@@ -1,0 +1,27 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "Modularization Sample"
+include ':app'
+include ':network'
+include ':database'
+include ':features'
+include ':features:home'
+include ':common'
+include ':common:helper'
+include ':common:models'
+include ':common:ui-components'
+include ':common:resources'
+include ':common:constants'
+include ':common:constants'

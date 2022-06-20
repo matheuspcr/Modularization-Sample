@@ -1,0 +1,25 @@
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    implementation dependencies.material
+    implementation dependencies.appCompat
+    implementation dependencies.coreKtx
+
+    implementation dependencies.hilt
+    kapt dependencies.hiltCompiler
+
+    implementation dependencies.collectionKtx
+    implementation dependencies.fragmentKtx
+    implementation dependencies.lifecycleKtx
+    implementation dependencies.livedataKtx
+    implementation dependencies.navigationRuntimeKtx
+    implementation dependencies.navigationFragKtx
+    implementation dependencies.navigationUiKtx
+    implementation dependencies.viewModelKtx
+
+    implementation dependencies.retrofit
+    implementation dependencies.gson
+    implementation dependencies.okHttp
+}
