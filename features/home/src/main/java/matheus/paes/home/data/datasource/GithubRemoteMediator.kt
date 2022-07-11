@@ -1,5 +1,6 @@
 package matheus.paes.home.data.datasource
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -32,23 +33,15 @@ class GithubRemoteMediator(
         state: PagingState<Int, RepoEntity>
     ): MediatorResult {
 
+        Log.d( "MPC", loadType.name)
+
         val page = when (loadType) {
             LoadType.REFRESH -> loadRefresh(state)
-            LoadType.PREPEND -> {
-                val remoteKeys = getRemoteKeyForFirstItem(state)
-                remoteKeys?.prevKey
-                    ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
-            }
-            LoadType.APPEND -> {
-                val remoteKeys = getRemoteKeyForLastItem(state)
-                remoteKeys?.nextKey
-                    ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
-            }
+            LoadType.PREPEND -> state.anchorPosition?.minus(1) ?: GITHUB_STARTING_PAGE_INDEX
+            LoadType.APPEND -> state.anchorPosition?.plus(1) ?: GITHUB_STARTING_PAGE_INDEX
         }
 
-        val apiQuery = query + IN_QUALIFIER
-
-        return getNewPage(apiQuery, page, state, loadType)
+        return getNewPage(query, page, state, loadType)
     }
 
     private suspend fun loadRefresh(state: PagingState<Int, RepoEntity>): Int {
@@ -56,15 +49,15 @@ class GithubRemoteMediator(
         return remoteKeys?.nextKey?.minus(1) ?: GITHUB_STARTING_PAGE_INDEX
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, RepoEntity>): RemoteKeyEntity? {
-        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, RepoEntity>): RemoteKeyEntity? {
+        return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { repo ->
                 remoteKeysLocalDataSource.remoteKeysRepoId(repo.id)
             }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, RepoEntity>): RemoteKeyEntity? {
-        return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, RepoEntity>): RemoteKeyEntity? {
+        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { repo ->
                 remoteKeysLocalDataSource.remoteKeysRepoId(repo.id)
             }

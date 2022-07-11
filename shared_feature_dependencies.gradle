@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/default_shared_dependencies.gradle"
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    android {
+        buildFeatures {
+            viewBinding true
+        }
+    }
+}
+
+dependencies {
+    implementation project(':network')
+    implementation project(':database')
+    implementation project(':common:models')
+    implementation project(':common:helper')
+    implementation project(':common:base')
+}

@@ -1,4 +1,4 @@
-package matheus.paes.home.presentation.ui.home
+package matheus.paes.home.presentation.ui.home.viewHolder
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,0 +1,1 @@
+apply from: "$rootDir/shared_feature_dependencies.gradle"

@@ -1,16 +1,16 @@
 package matheus.paes.home.presentation
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.view.LayoutInflater
 import dagger.hilt.android.AndroidEntryPoint
-import matheus.paes.home.R
-import matheus.paes.home.presentation.ui.home.HomeFragment
+import matheus.paes.base.BaseActivity
+import matheus.paes.home.databinding.ActivityHomeBinding
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity<ActivityHomeBinding>() {
+    override val bindingInflater: (LayoutInflater) -> ActivityHomeBinding
+        get() = ActivityHomeBinding::inflate
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+    override fun setupActivity() {
+
     }
 }

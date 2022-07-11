@@ -3,11 +3,14 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="Modularization_Sample.app" target="11" />
+      <module name="Modularization_Sample.common.base" target="11" />
       <module name="Modularization_Sample.common.helper" target="11" />
       <module name="Modularization_Sample.common.models" target="11" />
       <module name="Modularization_Sample.common.resources" target="11" />
+      <module name="Modularization_Sample.common.shared-tests" target="11" />
       <module name="Modularization_Sample.common.ui-components" target="11" />
       <module name="Modularization_Sample.database" target="11" />
+      <module name="Modularization_Sample.features.detail" target="11" />
       <module name="Modularization_Sample.features.home" target="11" />
       <module name="Modularization_Sample.home" target="11" />
       <module name="Modularization_Sample.network" target="11" />

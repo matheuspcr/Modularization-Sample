@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        androidTest {
+            assets.srcDirs = ['src/androidTest/assets/', 'src/sharedTest/java']
+            java.srcDirs = ['src/androidTest/java', 'src/sharedTest/java']
+            kotlin.srcDirs = ['src/androidTest/java', 'src/sharedTest/java']
+        }
+        test {
+            java.srcDirs += "src/sharedTest/java"
+            kotlin.srcDirs += "src/sharedTest/java"
+        }
+        main {
+            res {
+                srcDirs 'src/main/res', 'src/main/res/layouts/profile', 'src/main/res/layouts/tour', 'src/main/res/layouts/authentication', 'src/main/res/layouts/authentication/onboarding', 'src/main/res/layouts/authentication/recover', 'src/main/res/layouts/authentication/signin', 'src/main/res/layouts/authentication/signup', 'src/main/res/layouts/chronogram', 'src/main/res/layouts/main', 'src/main/res/layouts/media', 'src/main/res/layouts/notification', 'src/main/res/layouts/playlist', 'src/main/res/layouts/search', 'src/main/res/layouts/splash', 'src/main/res/layouts/uicomponents', 'src/main/res/layouts/social', 'src/main/res/layouts/timeline', 'src/main/res/layouts/challenges', 'src/main/res/layouts/challenges/quiz', 'src/main/res/layouts/challenges/flashcard'
+            }
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+def allTestsConfigs(dependency) {
+    dependencies.add('api', dependency)
+    dependencies.add('testApi', dependency)
+    dependencies.add('androidTestApi', dependency)
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.test_dependencies
+
+    implementation dependencies.coreKtx
+    implementation dependencies.livedataKtx
+    implementation dependencies.coroutines
+
+    // Unit and Instrumented tests
+    allTestsConfigs testDependencies.truth
+    allTestsConfigs testDependencies.accessibilityTest
+    allTestsConfigs testDependencies.coroutinesTest
+    allTestsConfigs testDependencies.mockk
+    allTestsConfigs testDependencies.fragmentTesting
+    allTestsConfigs testDependencies.junit
+    allTestsConfigs testDependencies.junitExt
+    allTestsConfigs testDependencies.robolectric
+    allTestsConfigs testDependencies.rules
+    allTestsConfigs testDependencies.espresso
+
+    // LeakCanary
+    debugApi testDependencies.leakcanary
+}

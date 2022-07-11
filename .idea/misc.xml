@@ -4,8 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="features/detail/src/main/res/drawable/ic_fork.xml" value="0.2835" />
+        <entry key="features/detail/src/main/res/drawable/ic_star.xml" value="0.2835" />
+        <entry key="features/detail/src/main/res/layout/fragment_detail.xml" value="0.39388275146484375" />
         <entry key="features/home/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="features/home/src/main/res/layout/fragment_home.xml" value="0.15" />
         <entry key="features/home/src/main/res/layout/repos_load_state_footer_view_item.xml" value="0.22010869565217392" />
+        <entry key="features/home/src/main/res/layout/separator_view_item.xml" value="0.20364583333333333" />
         <entry key="home/src/main/res/layout/fragment_home.xml" value="0.22010869565217392" />
         <entry key="home/src/main/res/layout/repo_view_item.xml" value="0.22010869565217392" />
         <entry key="home/src/main/res/layout/separator_view_item.xml" value="0.22010869565217392" />

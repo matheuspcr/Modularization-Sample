@@ -12,13 +12,16 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common/base" />
             <option value="$PROJECT_DIR$/common/constants" />
             <option value="$PROJECT_DIR$/common/helper" />
             <option value="$PROJECT_DIR$/common/models" />
             <option value="$PROJECT_DIR$/common/resources" />
+            <option value="$PROJECT_DIR$/common/shared-tests" />
             <option value="$PROJECT_DIR$/common/ui-components" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/detail" />
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/network" />
           </set>
