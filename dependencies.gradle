@@ -28,6 +28,7 @@ ext {
     lifecycle_version = '2.5.0-rc01'
     liveData_version = '2.5.0-rc01'
     viewModel_version = '2.5.0-rc01'
+    coil_version = '2.2.0'
 
     dependencies = [
             retrofit            : "com.squareup.retrofit2:retrofit:$retrofit_version",
@@ -51,6 +52,7 @@ ext {
             transition          : "androidx.transition:transition-ktx:$transition_version",
             hilt                : "com.google.dagger:hilt-android:$hilt_version",
             hiltCompiler        : "com.google.dagger:hilt-android-compiler:$hilt_version",
+            coil                : "io.coil-kt:coil:$coil_version",
 
             collectionKtx       : "androidx.collection:collection-ktx:$collectionKtx_version",
             fragmentKtx         : "androidx.fragment:fragment-ktx:$fragment_version",
@@ -65,7 +67,7 @@ ext {
 
 
     acessibility_version = '4.0.0'
-    mockk_version = '1.12.0'
+    mockk_version = '1.12.7'
     truth_version = '1.1.3'
     rules_version = '1.4.0'
     leakcanary_version = '2.7'

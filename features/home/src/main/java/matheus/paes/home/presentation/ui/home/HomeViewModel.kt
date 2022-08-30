@@ -13,6 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import matheus.paes.helper.ViewState
+import matheus.paes.home.data.models.Repo
 import matheus.paes.home.data.repository.IGithubRepository
 import matheus.paes.models.RepoEntity
 import javax.inject.Inject
@@ -29,7 +30,9 @@ class HomeViewModel @Inject constructor(
         val query = when (action) {
             UiAction.Refresh -> lastQuery
             is UiAction.Search -> action.query
+            is UiAction.Scroll -> action.currentQuery
         }
+        lastQuery = query
         viewModelScope.launch { searchQuery.emit(query) }
     }
 
@@ -43,5 +46,6 @@ class HomeViewModel @Inject constructor(
 
 sealed class UiAction {
     data class Search(val query: String): UiAction()
+    data class Scroll(val currentQuery: String): UiAction()
     object Refresh: UiAction()
 }

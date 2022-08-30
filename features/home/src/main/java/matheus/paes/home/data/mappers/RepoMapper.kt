@@ -15,3 +15,5 @@ fun Repo.toEntity() = RepoEntity(
     ownerName = owner.login,
     ownerPhoto = owner.avatar_url
 )
+
+fun List<Repo>.toEntity() = this.map { it.toEntity() }

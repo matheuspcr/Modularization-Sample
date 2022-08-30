@@ -26,7 +26,7 @@ object HomeModule {
         githubRepoLocalDataSource: IGithubRepoLocalDataSource,
         remoteKeysLocalDataSource: IRemoteKeysLocalDataSource
     ): IGithubRepository {
-        return GithubRepositoryImpl(service, githubRepoLocalDataSource, remoteKeysLocalDataSource)
+        return GithubRepositoryImpl(service)
     }
 
 }

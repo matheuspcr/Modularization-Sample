@@ -3,15 +3,19 @@ package matheus.paes.home.presentation.ui.home.viewHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import matheus.paes.helper.makeGone
 import matheus.paes.helper.toggleVisibility
 import matheus.paes.home.R
 import matheus.paes.models.RepoEntity
 
 class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private val profileImg: ImageView = view.findViewById(R.id.user_img)
+    private val userName: TextView = view.findViewById(R.id.user_name)
     private val name: TextView = view.findViewById(R.id.repo_name)
     private val description: TextView = view.findViewById(R.id.repo_description)
     private val stars: TextView = view.findViewById(R.id.repo_stars)
@@ -42,7 +46,10 @@ class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private fun showRepoData(repo: RepoEntity) {
         this.repo = repo
+        profileImg.load(repo.ownerPhoto)
+        userName.text = repo.ownerName
         name.text = repo.fullName
+
 
         toggleDescriptionVisibility()
         toggleLanguageVisibility()
@@ -59,7 +66,7 @@ class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun toggleLanguageVisibility() {
-        repo?.language?.let { description.text = it }
+        repo?.language?.let { language.text = it }
 
         val hasLanguage = !repo?.language.isNullOrEmpty()
         language.toggleVisibility(hasLanguage)

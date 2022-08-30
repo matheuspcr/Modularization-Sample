@@ -22,9 +22,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
     private val viewModel by viewModels<HomeViewModel>()
-
-    private lateinit var adapter: HomeAdapter
-
+    private val pagingAdapter by lazy { HomeAdapter() }
 
     override fun setupFragment() {
         binding.bindList()
@@ -34,11 +32,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun FragmentHomeBinding.bindList() {
-        adapter = HomeAdapter()
-        list.adapter = adapter
+        list.adapter = pagingAdapter
         list.layoutManager = LinearLayoutManager(list.context)
         val decoration = DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL)
         list.addItemDecoration(decoration)
+
     }
 
     private fun FragmentHomeBinding.bindSearchBar() {
@@ -82,7 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 items.collectLatest {
                     binding.swipeRefresh.apply { if (isRefreshing) isRefreshing = false}
-                    adapter.submitData(it)
+                    pagingAdapter.submitData(it)
                 }
             }
         }

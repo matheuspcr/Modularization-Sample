@@ -5,4 +5,5 @@ dependencies {
 
     implementation dependencies.paging
     implementation dependencies.swipeRefresh
+    implementation dependencies.coil
 }
